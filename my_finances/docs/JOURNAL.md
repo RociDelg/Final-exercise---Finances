@@ -3,7 +3,7 @@
 ## Project Timeline
 
 ### Phase 1: Project Setup and Architecture (Current)
-- [x] Initial project setup with Angular 17
+- [x] Initial project setup with Angular
 - [x] Architecture documentation
 - [x] System architecture design
 - [x] Data model design
@@ -70,7 +70,7 @@
 ## Notes
 
 ### Architecture Decisions
-- Using Angular 17 for better performance and features
+- Using Angular for better performance and features
 - Implementing functional programming paradigm
 - Using TypeScript for type safety
 - Following Angular best practices and style guide
