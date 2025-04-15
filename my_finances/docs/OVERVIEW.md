@@ -8,27 +8,24 @@
 
 ## 1. Overview
 
-my_finances is a comprehensive web application designed for personal financial management. It provides users with a secure and intuitive platform to track their income and expenses, visualize financial data through interactive charts, and export their financial information for external analysis. The application features a modern, responsive design with support for both light and dark themes, ensuring comfortable usage in different lighting conditions.
+my_finances is a web application designed for personal financial management. It allows users to track their income and expenses, visualize financial data through interactive charts, and export their financial information for external analysis. The application provides a comprehensive dashboard for financial overview and supports both light and dark themes for comfortable usage in different lighting conditions.
 
-Built using Angular and TypeScript, the application follows a functional programming paradigm and implements a layered architecture for clean separation of concerns. It utilizes Angular Material for UI components, Chart.js for data visualization, and LocalStorage for data persistence. The application is designed to be user-friendly, secure, and performant, with a focus on providing a seamless experience for managing personal finances.
+The application is built using Angular for the frontend, with TypeScript as the programming language. It utilizes Angular Material for UI components, Chart.js for data visualization, and LocalStorage for data persistence. The application follows a functional programming paradigm and implements a layered architecture for clean separation of concerns.
 
 ### Key Technologies
-- **Frontend Framework**: Angular 17.x
-- **Language**: TypeScript 5.x
-- **Styling**: SCSS with Angular Material
+- **Frontend Framework**: Angular
+- **Language**: TypeScript
+- **Styling**: SCSS
 - **UI Components**: Angular Material
 - **Data Visualization**: Chart.js
 - **State Management**: LocalStorage
 - **Routing**: Angular Router
-- **Authentication**: Firebase Auth
 - **Testing**: Jasmine, Karma, Cypress
 
 ### Critical External Libraries/Services
 - Angular Material (UI components)
 - Chart.js (data visualization)
-- Firebase Authentication (user authentication)
 - LocalStorage API (data persistence)
-- Angular Fire (Firebase integration)
 - Angular Forms (form handling)
 - Angular Router (navigation)
 
@@ -86,7 +83,7 @@ User Authentication → User Data Storage → Transaction Management → Data Vi
 ### Setup/Installation
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/my_finances.git
+   git clone https://github.com/RociDelg/Final-exercise---Finances.git
    cd my_finances
    ```
 
@@ -95,20 +92,14 @@ User Authentication → User Data Storage → Transaction Management → Data Vi
    npm install
    ```
 
-3. Configure Firebase:
-   - Create a Firebase project
-   - Update `src/environments/environment.ts` with your Firebase config
-   - Enable Email/Password and Google authentication in Firebase Console
-
-4. Start the development server:
+3. Start the development server:
    ```bash
    ng serve
    ```
 
-5. Access the application at `http://localhost:4200`
+4. Access the application at `http://localhost:4200`
 
 ### Environment Configuration
-- Firebase credentials in `src/environments/environment.ts`
 - LocalStorage preferences in `src/app/services/storage.service.ts`
 - Theme configuration in `src/styles/themes/`
 - API endpoints in `src/app/services/api.service.ts`
@@ -117,7 +108,6 @@ User Authentication → User Data Storage → Transaction Management → Data Vi
 
 - **User Authentication**:
   - Email/password registration and login
-  - Google authentication integration
   - Password recovery functionality
   - Session management
 

@@ -37,8 +37,7 @@
    - Chose Angular Material for UI components
 
 2. **Authentication**
-   - Selected Firebase Authentication for user management
-   - Implemented email/password and Google authentication
+   - Selected LocalStorage Authentication for user management
    - Decided to use JWT tokens for session management
 
 3. **Data Storage**

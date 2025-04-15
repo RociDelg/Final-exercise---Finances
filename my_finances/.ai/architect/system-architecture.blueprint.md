@@ -75,8 +75,8 @@ my_finances is a web application for personal use that allows users to register 
 graph TD
     A[User] -->|Uses| B[Web Application]
     B -->|Sends Requests| C[Node Express Backend]
-    C -->|Fetches Data| D[Firestore Database]
-    C -->|Authenticates| E[Firebase Auth]
+    C -->|Fetches Data| D[SQLite Database]
+    C -->|Authenticates| E[LocalStorage Auth]
     B -->|Uses| F[Chart.js or ngx-charts]
 ```
 

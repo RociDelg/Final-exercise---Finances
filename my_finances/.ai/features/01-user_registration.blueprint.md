@@ -55,20 +55,14 @@ Feature: User Registration and Login
 ## Additional Information
 
 - **Dependencies**: 
-  - Firebase Authentication
   - LocalStorage for data persistence
   - Angular Router for navigation
   - Angular Material for UI components
 
-- **Preconditions**: 
-  - Firebase project must be configured
-  - Google OAuth credentials must be set up
-  - Application must have internet connectivity for Firebase services
-
 - **Notes**: 
   - Email format validation follows standard RFC 5322
   - Password must be at least 8 characters long with at least one number and one special character
-  - User data is primarily stored in LocalStorage with Firebase as backup
+  - User data is primarily stored in LocalStorage
   - JWT tokens are used for session management
 
 _End of Feature Documentation for User Registration and Login_ 

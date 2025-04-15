@@ -7,8 +7,8 @@ my_finances is a web application for my private use to register incomes and expe
 Key Features
 
 1️. Login and Registration (Optional)
-• Authentication with email/password or Google (Firebase Auth).
-• Save user data in Firestore or LocalStorage.
+• Authentication with email/password.
+• Save user data in LocalStorage.
 
 2️. Income and Expense Recording
 • Form to add income and expenses with the following fields:
@@ -16,7 +16,7 @@ o Amount 💰 (number)
 o Category 📌 (e.g., Food, Transportation, Entertainment)
 o Date 📅 (date picker)
 o Optional description 📝
-• Save in Firebase or LocalStorage.
+• Save in LocalStorage.
 
 3️. Financial Summary Display
 • Show current balance based on income - expenses.
