@@ -1,0 +1,14 @@
+@import '../styles/variables';
+@import '../styles/mixins';
+
+.container {
+  padding: $spacing-md;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+h1 {
+  color: $primary-color;
+  margin-bottom: $spacing-lg;
+  text-align: center;
+}

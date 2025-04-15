@@ -1,0 +1,14 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+--- 
+description: About the system and terminal
+globs: 
+alwaysApply: true
+--- 
+
+This machine is a PC with Windows 10
+Terminal is a Powershell 5.1
+This project is based on `npm`
