@@ -14,10 +14,10 @@ alwaysApply: false
 
 ## CSS rules
 
-- We use @PicoCSS as a reset 
+- We use @sCSS as a reset 
   - Do not create custom classes
-  - PicoCSS will style semantic HTML
-  - Customize variables at `/src/client/styles.css`
+  - sCSS will style semantic HTML
+  - Customize variables at `/src/styles.css`
 
 ## Images
 

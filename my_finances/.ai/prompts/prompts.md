@@ -140,6 +140,12 @@ Should we include custom styling for specific components in dark mode? Yes
 
 Execute @overview.prompt.md to generate the OVERVIEW.md doc
 
+Execute the User entity with email and password
+
+Generate a rule to be applied when generating this kind of files @tools.sql.json
+
+Generate the SQL commands json files for User, Chart and Transaction entities
+
 
 
 ## Builder

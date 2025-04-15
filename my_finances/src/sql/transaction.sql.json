@@ -1,0 +1,55 @@
+{
+	"TABLE": "transaction",
+	"CREATE_TABLE": "CREATE TABLE transaction (id INTEGER PRIMARY KEY AUTOINCREMENT, user_id INTEGER NOT NULL, amount DECIMAL(10,2) NOT NULL, description TEXT, category TEXT, transaction_date DATE NOT NULL, type TEXT NOT NULL, created_at DATETIME, updated_at DATETIME, FOREIGN KEY (user_id) REFERENCES user(id))",
+	"SELECT_ALL": "SELECT * FROM transaction",
+	"SELECT_BY_ID": "SELECT * FROM transaction WHERE id = $id",
+	"SELECT_BY_USER_ID": "SELECT * FROM transaction WHERE user_id = $user_id",
+	"SELECT_BY_DATE_RANGE": "SELECT * FROM transaction WHERE user_id = $user_id AND transaction_date BETWEEN $start_date AND $end_date",
+	"SELECT_BY_CATEGORY": "SELECT * FROM transaction WHERE user_id = $user_id AND category = $category",
+	"SELECT_BY_TYPE": "SELECT * FROM transaction WHERE user_id = $user_id AND type = $type",
+	"INSERT": "INSERT INTO transaction (user_id, amount, description, category, transaction_date, type, created_at, updated_at) VALUES ($user_id, $amount, $description, $category, $transaction_date, $type, $created_at, $updated_at)",
+	"UPDATE": "UPDATE transaction SET amount = $amount, description = $description, category = $category, transaction_date = $transaction_date, type = $type, updated_at = $updated_at WHERE id = $id",
+	"DELETE": "DELETE FROM transaction WHERE id = $id",
+	"SEED": [
+		{
+			"user_id": 1,
+			"amount": 1200.50,
+			"description": "Monthly salary",
+			"category": "Income",
+			"transaction_date": "2023-01-15",
+			"type": "income"
+		},
+		{
+			"user_id": 1,
+			"amount": 850.00,
+			"description": "Rent payment",
+			"category": "Housing",
+			"transaction_date": "2023-01-05",
+			"type": "expense"
+		},
+		{
+			"user_id": 1,
+			"amount": 120.75,
+			"description": "Grocery shopping",
+			"category": "Food",
+			"transaction_date": "2023-01-10",
+			"type": "expense"
+		},
+		{
+			"user_id": 2,
+			"amount": 950.00,
+			"description": "Freelance project",
+			"category": "Income",
+			"transaction_date": "2023-01-20",
+			"type": "income"
+		},
+		{
+			"user_id": 2,
+			"amount": 45.00,
+			"description": "Netflix subscription",
+			"category": "Entertainment",
+			"transaction_date": "2023-01-15",
+			"type": "expense"
+		}
+	]
+} 

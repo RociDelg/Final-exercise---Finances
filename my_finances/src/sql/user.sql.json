@@ -1,0 +1,27 @@
+{
+	"TABLE": "user",
+	"CREATE_TABLE": "CREATE TABLE user (id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT UNIQUE NOT NULL, email TEXT UNIQUE NOT NULL, password_hash TEXT NOT NULL, first_name TEXT, last_name TEXT, created_at DATETIME, updated_at DATETIME)",
+	"SELECT_ALL": "SELECT * FROM user",
+	"SELECT_BY_ID": "SELECT * FROM user WHERE id = $id",
+	"SELECT_BY_USERNAME": "SELECT * FROM user WHERE username = $username",
+	"SELECT_BY_EMAIL": "SELECT * FROM user WHERE email = $email",
+	"INSERT": "INSERT INTO user (username, email, password_hash, first_name, last_name, created_at, updated_at) VALUES ($username, $email, $password_hash, $first_name, $last_name, $created_at, $updated_at)",
+	"UPDATE": "UPDATE user SET username = $username, email = $email, password_hash = $password_hash, first_name = $first_name, last_name = $last_name, updated_at = $updated_at WHERE id = $id",
+	"DELETE": "DELETE FROM user WHERE id = $id",
+	"SEED": [
+		{
+			"username": "admin",
+			"email": "admin@example.com",
+			"password_hash": "8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f448ab448a5",
+			"first_name": "Admin",
+			"last_name": "User"
+		},
+		{
+			"username": "demo",
+			"email": "demo@example.com",
+			"password_hash": "89e495e7941cf9e40e6980d14a16bf023ccd4c91a01d061ce36f31e0ff6650cb",
+			"first_name": "Demo",
+			"last_name": "User"
+		}
+	]
+} 

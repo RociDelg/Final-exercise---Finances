@@ -5,16 +5,16 @@ alwaysApply: false
 ---
 ---
 description: Generate a server domain entity
-globs: /src/server/domain/*.type.ts
+globs: /src/server/api/domain/*.type.ts
 alwaysApply: false
 ---
 # Server Entity Rules
 
 ## Naming Conventions
 - File naming: Use `{entity-name}.type.ts` in kebab-case
-- Type names: Use PascalCase for type definitions (e.g., `Tool`)
-- Constants: Use UPPER_SNAKE_CASE for null/default objects (e.g., `NULL_TOOL`)
-- Functions: Use camelCase for validation functions (e.g., `validateTool`)
+- Type names: Use PascalCase for type definitions (e.g., `User`)
+- Constants: Use UPPER_SNAKE_CASE for null/default objects (e.g., `NULL_USER`)
+- Functions: Use camelCase for validation functions (e.g., `validateUser`)
 - Fields: Use snake_case for all entity properties (e.g., `user_id`)
 
 ## Required Exports
