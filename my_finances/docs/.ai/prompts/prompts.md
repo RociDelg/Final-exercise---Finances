@@ -146,6 +146,11 @@ Generate a rule to be applied when generating this kind of files @tools.sql.json
 
 Generate the SQL commands json files for User, Chart and Transaction entities
 
+Generate a resource for User CRUD API (@server-resource.mdc)
+
+I'll help you update the OVERVIEW.md document based on the prompt template and current project state. First, let me examine the current project structure to identify any changes
+
+Write the plan for the feature following the instructions
 
 
 ## Builder
