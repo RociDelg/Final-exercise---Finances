@@ -79,23 +79,23 @@ Read the following reference documentation to be used during implementation:
 
 ### 1. SQL Commands 
 
-- [ ] Create or update the `/src/sql` folder with the SQL commands
+- [x] Create or update the `/src/sql` folder with the SQL commands
 
 - **Rule**: Respect the [SQL-Commands JSON rule](/.cursor/rules/sql-commands-json.mdc)
 
-- [ ] Create if not exists a file called `user.sql.json`
-- [ ] Fill it or update it with the SQL commands
-- [ ] Add the seed data as an array of objects to the `SEED` property if needed
+- [x] Create if not exists a file called `user.sql.json`
+- [x] Fill it or update it with the SQL commands
+- [x] Add the seed data as an array of objects to the `SEED` property if needed
 
 ### 2. Domain Entity types
 
-- [ ] Create or update the `/src/server/api/domain` folder with the domain types
+- [x] Create or update the `/src/server/api/domain` folder with the domain types
   
 - **Rule**: Respect the [Server domain entity rule](/.cursor/rules/server-domain-entity.mdc)
 
-- [ ] Create if not exists a file called `user.type.ts`
-- [ ] Fill it or update it with the domain types, null value and validation function respecting the [Server entity rule](/.cursor/rules/server-entity.mdc)
-- [ ] Ensure the `theme_preference` field is included in the user type definition
+- [x] Create if not exists a file called `user.type.ts`
+- [x] Fill it or update it with the domain types, null value and validation function respecting the [Server entity rule](/.cursor/rules/server-entity.mdc)
+- [x] Ensure the `theme_preference` field is included in the user type definition
 
 ### 3. Table Initialization functions
 
@@ -121,10 +121,10 @@ const seedUsers = (): void => {
 };
 ```
 
-- [ ] Create or update the `/src/server/api/shared/initialize.utils.ts` file 
-- [ ] Read the sql commands for the table at `const userSql = await readCommands("user");`
-- [ ] Create if not exists a function called `initializeUserTable`
-- [ ] Add the seed data function calls if needed
-- [ ] Add the table initialization call to the `initializeTables` function
+- [x] Create or update the `/src/server/api/shared/initialize.utils.ts` file 
+- [x] Read the sql commands for the table at `const userSql = await readCommands("user");`
+- [x] Create if not exists a function called `initializeUserTable`
+- [x] Add the seed data function calls if needed
+- [x] Add the table initialization call to the `initializeTables` function
 
 _End of SQL Plan for 07 - dark_mode_ 

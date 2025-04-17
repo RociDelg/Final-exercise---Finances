@@ -1,27 +1,47 @@
 {
-	"TABLE": "user",
-	"CREATE_TABLE": "CREATE TABLE user (id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT UNIQUE NOT NULL, email TEXT UNIQUE NOT NULL, password_hash TEXT NOT NULL, first_name TEXT, last_name TEXT, created_at DATETIME, updated_at DATETIME)",
-	"SELECT_ALL": "SELECT * FROM user",
-	"SELECT_BY_ID": "SELECT * FROM user WHERE id = $id",
-	"SELECT_BY_USERNAME": "SELECT * FROM user WHERE username = $username",
-	"SELECT_BY_EMAIL": "SELECT * FROM user WHERE email = $email",
-	"INSERT": "INSERT INTO user (username, email, password_hash, first_name, last_name, created_at, updated_at) VALUES ($username, $email, $password_hash, $first_name, $last_name, $created_at, $updated_at)",
-	"UPDATE": "UPDATE user SET username = $username, email = $email, password_hash = $password_hash, first_name = $first_name, last_name = $last_name, updated_at = $updated_at WHERE id = $id",
-	"DELETE": "DELETE FROM user WHERE id = $id",
+	"TABLE": "users",
+	"CREATE_TABLE": "CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT NOT NULL UNIQUE, email TEXT NOT NULL UNIQUE, password_hash TEXT NOT NULL, first_name TEXT, last_name TEXT, theme_preference TEXT DEFAULT 'system', created_at TEXT NOT NULL, updated_at TEXT NOT NULL)",
+	"DROP_TABLE": "DROP TABLE IF EXISTS users",
+	"INSERT": "INSERT INTO users (id, username, email, password_hash, first_name, last_name, theme_preference, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)",
+	"SELECT_ALL": "SELECT * FROM users",
+	"SELECT_BY_ID": "SELECT * FROM users WHERE id = ?",
+	"SELECT_BY_USERNAME": "SELECT * FROM users WHERE username = ?",
+	"SELECT_BY_EMAIL": "SELECT * FROM users WHERE email = ?",
+	"UPDATE": "UPDATE users SET username = ?, email = ?, password_hash = ?, first_name = ?, last_name = ?, theme_preference = ?, updated_at = ? WHERE id = ?",
+	"DELETE": "DELETE FROM users WHERE id = ?",
 	"SEED": [
 		{
+			"id": 1,
 			"username": "admin",
 			"email": "admin@example.com",
-			"password_hash": "8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f448ab448a5",
+			"password_hash": "$2a$10$XOPbrlUPQdwdJUpSrIF6X.LbE14qsMmKGhM1A8W9iq.s4pJ9Jq1Hy",
 			"first_name": "Admin",
-			"last_name": "User"
+			"last_name": "User",
+			"theme_preference": "system",
+			"created_at": "2023-01-01T00:00:00Z",
+			"updated_at": "2023-01-01T00:00:00Z"
 		},
 		{
+			"id": 2,
 			"username": "demo",
 			"email": "demo@example.com",
-			"password_hash": "89e495e7941cf9e40e6980d14a16bf023ccd4c91a01d061ce36f31e0ff6650cb",
+			"password_hash": "$2a$10$XOPbrlUPQdwdJUpSrIF6X.LbE14qsMmKGhM1A8W9iq.s4pJ9Jq1Hy",
 			"first_name": "Demo",
-			"last_name": "User"
+			"last_name": "User",
+			"theme_preference": "dark",
+			"created_at": "2023-01-01T00:00:00Z",
+			"updated_at": "2023-01-01T00:00:00Z"
+		},
+		{
+			"id": 3,
+			"username": "light_user",
+			"email": "light@example.com",
+			"password_hash": "$2a$10$XOPbrlUPQdwdJUpSrIF6X.LbE14qsMmKGhM1A8W9iq.s4pJ9Jq1Hy",
+			"first_name": "Light",
+			"last_name": "Theme",
+			"theme_preference": "light",
+			"created_at": "2023-01-01T00:00:00Z",
+			"updated_at": "2023-01-01T00:00:00Z"
 		}
 	]
 } 

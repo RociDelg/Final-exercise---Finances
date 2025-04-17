@@ -1,55 +1,43 @@
 {
 	"TABLE": "transaction",
-	"CREATE_TABLE": "CREATE TABLE transaction (id INTEGER PRIMARY KEY AUTOINCREMENT, user_id INTEGER NOT NULL, amount DECIMAL(10,2) NOT NULL, description TEXT, category TEXT, transaction_date DATE NOT NULL, type TEXT NOT NULL, created_at DATETIME, updated_at DATETIME, FOREIGN KEY (user_id) REFERENCES user(id))",
-	"SELECT_ALL": "SELECT * FROM transaction",
-	"SELECT_BY_ID": "SELECT * FROM transaction WHERE id = $id",
-	"SELECT_BY_USER_ID": "SELECT * FROM transaction WHERE user_id = $user_id",
+	"CREATE_TABLE": "CREATE TABLE IF NOT EXISTS transaction (id INTEGER PRIMARY KEY AUTOINCREMENT, user_id INTEGER NOT NULL, amount DECIMAL(10,2) NOT NULL, description TEXT, category VARCHAR(50) NOT NULL, transaction_date DATE NOT NULL, type VARCHAR(10) NOT NULL CHECK (type IN ('income', 'expense')), status VARCHAR(10) DEFAULT 'active' CHECK (status IN ('active', 'deleted', 'modified')), created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, FOREIGN KEY (user_id) REFERENCES user(id));",
+	"SELECT_ALL": "SELECT * FROM transaction;",
+	"SELECT_BY_ID": "SELECT * FROM transaction WHERE id = ?;",
+	"SELECT_BY_USER_ID": "SELECT * FROM transaction WHERE user_id = ?;",
 	"SELECT_BY_DATE_RANGE": "SELECT * FROM transaction WHERE user_id = $user_id AND transaction_date BETWEEN $start_date AND $end_date",
 	"SELECT_BY_CATEGORY": "SELECT * FROM transaction WHERE user_id = $user_id AND category = $category",
 	"SELECT_BY_TYPE": "SELECT * FROM transaction WHERE user_id = $user_id AND type = $type",
-	"INSERT": "INSERT INTO transaction (user_id, amount, description, category, transaction_date, type, created_at, updated_at) VALUES ($user_id, $amount, $description, $category, $transaction_date, $type, $created_at, $updated_at)",
-	"UPDATE": "UPDATE transaction SET amount = $amount, description = $description, category = $category, transaction_date = $transaction_date, type = $type, updated_at = $updated_at WHERE id = $id",
-	"DELETE": "DELETE FROM transaction WHERE id = $id",
+	"INSERT": "INSERT INTO transaction (user_id, amount, description, category, transaction_date, type, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?);",
+	"UPDATE": "UPDATE transaction SET amount = ?, description = ?, category = ?, transaction_date = ?, type = ?, updated_at = ? WHERE id = ? AND user_id = ?;",
+	"DELETE": "UPDATE transaction SET status = 'deleted', updated_at = ? WHERE id = ? AND user_id = ?;",
+	"SEARCH_BY_TERM": "SELECT * FROM transaction WHERE user_id = ? AND (description LIKE ? OR category LIKE ? OR amount LIKE ? OR transaction_date LIKE ?) AND status = 'active';",
+	"SEARCH_WITH_FILTERS": "SELECT * FROM transaction WHERE user_id = ? AND status = 'active' AND (?1 IS NULL OR transaction_date BETWEEN ?1 AND ?2) AND (?3 IS NULL OR amount BETWEEN ?3 AND ?4) AND (?5 IS NULL OR category IN (SELECT value FROM json_each(?5))) AND (?6 IS NULL OR type = ?6);",
+	"COUNT_BY_FILTER": "SELECT COUNT(*) as count FROM transaction WHERE user_id = ? AND status = 'active' AND (?1 IS NULL OR transaction_date BETWEEN ?1 AND ?2) AND (?3 IS NULL OR amount BETWEEN ?3 AND ?4) AND (?5 IS NULL OR category IN (SELECT value FROM json_each(?5))) AND (?6 IS NULL OR type = ?6);",
+	"GET_FILTER_OPTIONS": "SELECT DISTINCT category, type, MIN(amount) as min_amount, MAX(amount) as max_amount, MIN(transaction_date) as min_date, MAX(transaction_date) as max_date FROM transaction WHERE user_id = ? AND status = 'active' GROUP BY category, type;",
 	"SEED": [
 		{
+			"id": 1,
 			"user_id": 1,
-			"amount": 1200.50,
+			"amount": 1000.00,
 			"description": "Monthly salary",
-			"category": "Income",
-			"transaction_date": "2023-01-15",
-			"type": "income"
+			"category": "salary",
+			"transaction_date": "2023-01-01",
+			"type": "income",
+			"status": "active",
+			"created_at": "2023-01-01T00:00:00Z",
+			"updated_at": "2023-01-01T00:00:00Z"
 		},
 		{
+			"id": 2,
 			"user_id": 1,
-			"amount": 850.00,
+			"amount": 500.00,
 			"description": "Rent payment",
-			"category": "Housing",
-			"transaction_date": "2023-01-05",
-			"type": "expense"
-		},
-		{
-			"user_id": 1,
-			"amount": 120.75,
-			"description": "Grocery shopping",
-			"category": "Food",
-			"transaction_date": "2023-01-10",
-			"type": "expense"
-		},
-		{
-			"user_id": 2,
-			"amount": 950.00,
-			"description": "Freelance project",
-			"category": "Income",
-			"transaction_date": "2023-01-20",
-			"type": "income"
-		},
-		{
-			"user_id": 2,
-			"amount": 45.00,
-			"description": "Netflix subscription",
-			"category": "Entertainment",
-			"transaction_date": "2023-01-15",
-			"type": "expense"
+			"category": "housing",
+			"transaction_date": "2023-01-02",
+			"type": "expense",
+			"status": "active",
+			"created_at": "2023-01-02T00:00:00Z",
+			"updated_at": "2023-01-02T00:00:00Z"
 		}
 	]
 } 

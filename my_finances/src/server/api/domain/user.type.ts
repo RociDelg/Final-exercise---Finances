@@ -1,25 +1,33 @@
 import { AppError } from "../shared/app-error.class";
+import { Entity, Raw } from '../shared/sql.type';
 
 /**
  * Represents a user with its properties
  */
-export type User = {
-	user_id: string;
+export type ThemePreference = 'light' | 'dark' | 'system';
+
+export interface User extends Entity {
+	username: string;
 	email: string;
-	password: string;
+	password_hash: string;
+	first_name?: string;
+	last_name?: string;
+	theme_preference: ThemePreference;
 	created_at: Date;
 	updated_at: Date;
-};
+}
 
 /**
  * Default empty user object
  */
 export const NULL_USER: User = {
-	user_id: "",
-	email: "",
-	password: "",
+	id: 0,
+	username: '',
+	email: '',
+	password_hash: '',
+	theme_preference: 'system',
 	created_at: new Date(),
-	updated_at: new Date(),
+	updated_at: new Date()
 };
 
 /**
@@ -27,21 +35,24 @@ export const NULL_USER: User = {
  * @param user - The user to validate
  * @throws AppError if the user is invalid
  */
-export const validateUser = (user: Partial<User>): void => {
-	// Email validation with regex for basic format checking
-	const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-	if (!user.email) {
-		throw new AppError("Email is required", "LOGIC");
-	}
-
-	if (user.email && !emailRegex.test(user.email)) {
-		throw new AppError("Invalid email format", "LOGIC");
-	}
-
-	// For password_hash, we only check if it exists when provided
-	// The actual password validation should happen before hashing
-	if (user.password !== undefined && user.password.length === 0) {
-		throw new AppError("Password hash cannot be empty", "LOGIC");
-	}
-};
+export function validateUser(user: Raw<User>): boolean {
+	if (!user) return false;
+	
+	// Required fields
+	if (!user.username || typeof user.username !== 'string') return false;
+	if (!user.email || typeof user.email !== 'string') return false;
+	if (!user.password_hash || typeof user.password_hash !== 'string') return false;
+	
+	// Optional fields
+	if (user.first_name && typeof user.first_name !== 'string') return false;
+	if (user.last_name && typeof user.last_name !== 'string') return false;
+	
+	// Theme preference
+	if (!user.theme_preference || !['light', 'dark', 'system'].includes(user.theme_preference)) return false;
+	
+	// Date fields
+	if (!(user.created_at instanceof Date)) return false;
+	if (!(user.updated_at instanceof Date)) return false;
+	
+	return true;
+}

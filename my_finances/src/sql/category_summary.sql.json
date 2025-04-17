@@ -1,0 +1,59 @@
+{
+  "TABLE": "category_summary",
+  "CREATE_TABLE": "CREATE TABLE category_summary (id INTEGER PRIMARY KEY AUTOINCREMENT, user_id INTEGER NOT NULL, category_id INTEGER NOT NULL, period_start DATE NOT NULL, period_end DATE NOT NULL, amount DECIMAL(10,2) NOT NULL DEFAULT 0, transaction_count INTEGER NOT NULL DEFAULT 0, created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, FOREIGN KEY (user_id) REFERENCES user(id), FOREIGN KEY (category_id) REFERENCES category(id), UNIQUE(user_id, category_id, period_start, period_end))",
+  "SELECT_ALL": "SELECT * FROM category_summary",
+  "SELECT_BY_ID": "SELECT * FROM category_summary WHERE id = $id",
+  "SELECT_BY_USER_ID": "SELECT * FROM category_summary WHERE user_id = $user_id",
+  "SELECT_BY_CATEGORY": "SELECT * FROM category_summary WHERE user_id = $user_id AND category_id = $category_id",
+  "SELECT_BY_PERIOD": "SELECT * FROM category_summary WHERE user_id = $user_id AND period_start = $period_start AND period_end = $period_end",
+  "SELECT_BY_DATE_RANGE": "SELECT * FROM category_summary WHERE user_id = $user_id AND period_start >= $start_date AND period_end <= $end_date",
+  "INSERT": "INSERT INTO category_summary (user_id, category_id, period_start, period_end, amount, transaction_count, created_at, updated_at) VALUES ($user_id, $category_id, $period_start, $period_end, $amount, $transaction_count, $created_at, $updated_at)",
+  "UPDATE": "UPDATE category_summary SET amount = $amount, transaction_count = $transaction_count, updated_at = $updated_at WHERE id = $id",
+  "DELETE": "DELETE FROM category_summary WHERE id = $id",
+  "SEED": [
+    {
+      "id": 1,
+      "user_id": 1,
+      "category_id": 1,
+      "period_start": "2023-01-01",
+      "period_end": "2023-01-31",
+      "amount": 5000.00,
+      "transaction_count": 1,
+      "created_at": "2023-01-31T23:59:59Z",
+      "updated_at": "2023-01-31T23:59:59Z"
+    },
+    {
+      "id": 2,
+      "user_id": 1,
+      "category_id": 2,
+      "period_start": "2023-01-01",
+      "period_end": "2023-01-31",
+      "amount": 1200.00,
+      "transaction_count": 1,
+      "created_at": "2023-01-31T23:59:59Z",
+      "updated_at": "2023-01-31T23:59:59Z"
+    },
+    {
+      "id": 3,
+      "user_id": 1,
+      "category_id": 3,
+      "period_start": "2023-01-01",
+      "period_end": "2023-01-31",
+      "amount": 800.00,
+      "transaction_count": 1,
+      "created_at": "2023-01-31T23:59:59Z",
+      "updated_at": "2023-01-31T23:59:59Z"
+    },
+    {
+      "id": 4,
+      "user_id": 1,
+      "category_id": 4,
+      "period_start": "2023-01-01",
+      "period_end": "2023-01-31",
+      "amount": 1500.00,
+      "transaction_count": 1,
+      "created_at": "2023-01-31T23:59:59Z",
+      "updated_at": "2023-01-31T23:59:59Z"
+    }
+  ]
+} 

@@ -1,0 +1,42 @@
+{
+  "CREATE_TABLE": "CREATE TABLE IF NOT EXISTS chart_filter (id INTEGER PRIMARY KEY AUTOINCREMENT, chart_id INTEGER NOT NULL, filter_type VARCHAR(50) NOT NULL, filter_value TEXT NOT NULL, created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, FOREIGN KEY (chart_id) REFERENCES chart(id) ON DELETE CASCADE);",
+  
+  "SELECT_ALL": "SELECT * FROM chart_filter;",
+  
+  "SELECT_BY_ID": "SELECT * FROM chart_filter WHERE id = ?;",
+  
+  "SELECT_BY_CHART_ID": "SELECT * FROM chart_filter WHERE chart_id = ?;",
+  
+  "INSERT": "INSERT INTO chart_filter (chart_id, filter_type, filter_value, created_at, updated_at) VALUES (?, ?, ?, ?, ?);",
+  
+  "UPDATE": "UPDATE chart_filter SET filter_type = ?, filter_value = ?, updated_at = ? WHERE id = ? AND chart_id = ?;",
+  
+  "DELETE": "DELETE FROM chart_filter WHERE id = ? AND chart_id = ?;",
+  
+  "SEED": [
+    {
+      "id": 1,
+      "chart_id": 1,
+      "filter_type": "date_range",
+      "filter_value": "{\"start\":\"2023-01-01\",\"end\":\"2023-12-31\"}",
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    },
+    {
+      "id": 2,
+      "chart_id": 2,
+      "filter_type": "category",
+      "filter_value": "[\"groceries\",\"entertainment\",\"utilities\"]",
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    },
+    {
+      "id": 3,
+      "chart_id": 3,
+      "filter_type": "date_range",
+      "filter_value": "{\"start\":\"2023-01-01\",\"end\":\"2023-12-31\"}",
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  ]
+} 

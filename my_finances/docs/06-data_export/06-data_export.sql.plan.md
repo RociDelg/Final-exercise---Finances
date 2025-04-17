@@ -213,29 +213,29 @@ Read the following reference documentation to be used during implementation:
 
 ### 1. SQL Commands 
 
-- [ ] Create or update the `/src/sql` folder with the SQL commands
+- [x] Create or update the `/src/sql` folder with the SQL commands
 
 - **Rule**: Respect the [SQL-Commands JSON rule](/.cursor/rules/sql-commands-json.mdc)
 
-- [ ] Create if not exists a file called `transaction.sql.json`
-- [ ] Fill it or update it with the SQL commands
-- [ ] Add the seed data as an array of objects to the `SEED` property if needed
+- [x] Create if not exists a file called `transaction.sql.json`
+- [x] Fill it or update it with the SQL commands
+- [x] Add the seed data as an array of objects to the `SEED` property if needed
 
-- [ ] Create if not exists a file called `export_log.sql.json`
-- [ ] Fill it or update it with the SQL commands
-- [ ] Add the seed data as an array of objects to the `SEED` property if needed
+- [x] Create if not exists a file called `export_log.sql.json`
+- [x] Fill it or update it with the SQL commands
+- [x] Add the seed data as an array of objects to the `SEED` property if needed
 
 ### 2. Domain Entity types
 
-- [ ] Create or update the `/src/server/api/domain` folder with the domain types
+- [x] Create or update the `/src/server/api/domain` folder with the domain types
   
 - **Rule**: Respect the [Server domain entity rule](/.cursor/rules/server-domain-entity.mdc)
 
-- [ ] Create if not exists a file called `transaction.type.ts`
-- [ ] Fill it or update it with the domain types, null value and validation function respecting the [Server entity rule](/.cursor/rules/server-entity.mdc)
+- [x] Create if not exists a file called `transaction.type.ts`
+- [x] Fill it or update it with the domain types, null value and validation function respecting the [Server entity rule](/.cursor/rules/server-entity.mdc)
 
-- [ ] Create if not exists a file called `export_log.type.ts`
-- [ ] Fill it or update it with the domain types, null value and validation function respecting the [Server entity rule](/.cursor/rules/server-entity.mdc)
+- [x] Create if not exists a file called `export_log.type.ts`
+- [x] Fill it or update it with the domain types, null value and validation function respecting the [Server entity rule](/.cursor/rules/server-entity.mdc)
 
 ### 3. Table Initialization functions
 
@@ -275,10 +275,10 @@ const seedExportLogs = (): void => {
 };
 ```
 
-- [ ] Create or update the `/src/server/api/shared/initialize.utils.ts` file 
-- [ ] Read the sql commands for the tables at `const transactionSql = await readCommands("transaction");` and `const exportLogSql = await readCommands("export_log");`
-- [ ] Create if not exists functions called `initializeTransactionTable` and `initializeExportLogTable`
-- [ ] Add the seed data function calls if needed
-- [ ] Add the table initialization calls to the `initializeTables` function
+- [x] Create or update the `/src/server/api/shared/initialize.utils.ts` file 
+- [x] Read the sql commands for the tables at `const transactionSql = await readCommands("transaction");` and `const exportLogSql = await readCommands("export_log");`
+- [x] Create if not exists functions called `initializeTransactionTable` and `initializeExportLogTable`
+- [x] Add the seed data function calls if needed
+- [x] Add the table initialization calls to the `initializeTables` function
 
 _End of SQL Plan for 06 - data_export_ 

@@ -1,0 +1,42 @@
+{
+  "TABLE": "export_log",
+  "CREATE_TABLE": "CREATE TABLE IF NOT EXISTS export_log (id INTEGER PRIMARY KEY AUTOINCREMENT, user_id INTEGER NOT NULL, export_type VARCHAR(10) NOT NULL CHECK (export_type IN ('CSV', 'PDF')), filter_criteria JSON, record_count INTEGER NOT NULL, export_date DATETIME NOT NULL, created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, FOREIGN KEY (user_id) REFERENCES user(id) ON DELETE CASCADE);",
+  "SELECT_ALL": "SELECT * FROM export_log;",
+  "SELECT_BY_ID": "SELECT * FROM export_log WHERE id = ?;",
+  "SELECT_BY_USER_ID": "SELECT * FROM export_log WHERE user_id = ? ORDER BY export_date DESC;",
+  "SELECT_RECENT_BY_USER_ID": "SELECT * FROM export_log WHERE user_id = ? ORDER BY export_date DESC LIMIT ?;",
+  "INSERT": "INSERT INTO export_log (user_id, export_type, filter_criteria, record_count, export_date, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?);",
+  "DELETE_OLD_ENTRIES": "DELETE FROM export_log WHERE user_id = ? AND id NOT IN (SELECT id FROM export_log WHERE user_id = ? ORDER BY export_date DESC LIMIT ?);",
+  "SEED": [
+    {
+      "id": 1,
+      "user_id": 1,
+      "export_type": "CSV",
+      "filter_criteria": "{\"dateRange\":{\"start\":\"2023-01-01\",\"end\":\"2023-01-31\"},\"category\":\"all\"}",
+      "record_count": 8,
+      "export_date": "2023-02-01T14:30:00Z",
+      "created_at": "2023-02-01T14:30:00Z",
+      "updated_at": "2023-02-01T14:30:00Z"
+    },
+    {
+      "id": 2,
+      "user_id": 1,
+      "export_type": "PDF",
+      "filter_criteria": "{\"dateRange\":{\"start\":\"2023-01-01\",\"end\":\"2023-01-31\"},\"category\":\"Groceries\"}",
+      "record_count": 1,
+      "export_date": "2023-02-02T10:15:00Z",
+      "created_at": "2023-02-02T10:15:00Z",
+      "updated_at": "2023-02-02T10:15:00Z"
+    },
+    {
+      "id": 3,
+      "user_id": 1,
+      "export_type": "CSV",
+      "filter_criteria": "{\"dateRange\":{\"start\":\"2023-01-01\",\"end\":\"2023-12-31\"},\"category\":\"all\",\"type\":\"income\"}",
+      "record_count": 2,
+      "export_date": "2023-02-05T16:45:00Z",
+      "created_at": "2023-02-05T16:45:00Z",
+      "updated_at": "2023-02-05T16:45:00Z"
+    }
+  ]
+} 

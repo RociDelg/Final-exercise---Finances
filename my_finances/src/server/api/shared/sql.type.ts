@@ -16,7 +16,13 @@ export type EntityFields = {
 	[key in EntityProperties]?: number | string;
 };
 
-export type Raw<T> = Omit<T, EntityProperties>;
+export interface Entity {
+	id: number;
+}
+
+export type Raw<T> = T & {
+	[key: string]: any;
+};
 
 export const NULL_ENTITY_FIELDS: EntityFields = {
 	id: 0,

@@ -1,0 +1,33 @@
+{
+  "TABLE": "filter_preset",
+  "CREATE_TABLE": "CREATE TABLE IF NOT EXISTS filter_preset (id INTEGER PRIMARY KEY AUTOINCREMENT, user_id INTEGER NOT NULL, name VARCHAR(100) NOT NULL, description TEXT, filters JSON NOT NULL, is_default BOOLEAN DEFAULT FALSE, created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, FOREIGN KEY (user_id) REFERENCES user(id) ON DELETE CASCADE, UNIQUE(user_id, name));",
+  "SELECT_ALL": "SELECT * FROM filter_preset;",
+  "SELECT_BY_ID": "SELECT * FROM filter_preset WHERE id = ?;",
+  "SELECT_BY_USER_ID": "SELECT * FROM filter_preset WHERE user_id = ? ORDER BY name;",
+  "SELECT_DEFAULT_BY_USER_ID": "SELECT * FROM filter_preset WHERE user_id = ? AND is_default = TRUE;",
+  "INSERT": "INSERT INTO filter_preset (user_id, name, description, filters, is_default, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?);",
+  "UPDATE": "UPDATE filter_preset SET name = ?, description = ?, filters = ?, is_default = ?, updated_at = ? WHERE id = ? AND user_id = ?;",
+  "DELETE": "DELETE FROM filter_preset WHERE id = ? AND user_id = ?;",
+  "SEED": [
+    {
+      "id": 1,
+      "user_id": 1,
+      "name": "Monthly Bills",
+      "description": "Filter for recurring monthly bills",
+      "filters": "{\"categories\":[\"utilities\",\"rent\",\"insurance\"],\"transaction_type\":\"expense\"}",
+      "is_default": true,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    },
+    {
+      "id": 2,
+      "user_id": 1,
+      "name": "Income Sources",
+      "description": "Track all income sources",
+      "filters": "{\"transaction_type\":\"income\",\"date_range\":{\"start\":\"2023-01-01\",\"end\":\"2023-12-31\"}}",
+      "is_default": false,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    }
+  ]
+} 

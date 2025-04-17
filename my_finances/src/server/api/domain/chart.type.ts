@@ -1,67 +1,61 @@
-import { AppError } from "../shared/app-error.class";
+import { Entity } from '../shared/entity.type';
 
-/**
- * Represents a chart with its properties
- */
-export type Chart = {
-	chart_id: string;
-	user_id: string;
-	data: {};
-	type: string;
-	period: string;
-	filters: [];
-	created_at: Date;
-	updated_at: Date;
-};
+export type ChartType = 'line' | 'bar' | 'pie' | 'doughnut';
+export type DataSource = 'transactions' | 'assets' | 'categories';
 
-/**
- * Valid chart types
- */
-export const CHART_TYPES = [
-	"bar",
-	"line",
-	"pie"
-] as const;
-export type ChartType = (typeof CHART_TYPES)[number];
+export interface Chart {
+	id: number;
+	user_id: number;
+	name: string;
+	description: string;
+	chart_type: ChartType;
+	data_source: DataSource;
+	config: {
+		x_axis?: string;
+		y_axis?: string;
+		group_by?: string;
+		filters?: Record<string, any>;
+	};
+	created_at: string;
+	updated_at: string;
+}
 
-/**
- * Default empty chart object
- */
 export const NULL_CHART: Chart = {
-	chart_id: "",
-	user_id: "",
-	data: {},
-	type: "",
-	period: "",
-	filters: [],
-	created_at: new Date(),
-	updated_at: new Date(),
+	id: 0,
+	user_id: 0,
+	name: '',
+	description: '',
+	chart_type: 'line',
+	data_source: 'transactions',
+	config: {},
+	created_at: new Date().toISOString(),
+	updated_at: new Date().toISOString()
 };
 
-/**
- * Validates a chart
- * @param chart - The chart to validate
- * @throws AppError if the chart is invalid
- */
-export const validateChart = (
-	chart: Partial<Chart>,
-): void => {
-	if (!chart.chart_id) {
-		throw new AppError("Chart id is required", "LOGIC");
+export function validateChart(chart: Chart): boolean {
+	if (!chart) return false;
+	
+	// Check required fields
+	if (!chart.name || !chart.chart_type || !chart.data_source) return false;
+	
+	// Validate name length
+	if (chart.name.length < 3 || chart.name.length > 100) return false;
+	
+	// Validate chart type
+	const validChartTypes: ChartType[] = ['line', 'bar', 'pie', 'doughnut'];
+	if (!validChartTypes.includes(chart.chart_type)) return false;
+	
+	// Validate data source
+	const validDataSources: DataSource[] = ['transactions', 'assets', 'categories'];
+	if (!validDataSources.includes(chart.data_source)) return false;
+	
+	// Validate config structure if present
+	if (chart.config) {
+		if (chart.config.x_axis && typeof chart.config.x_axis !== 'string') return false;
+		if (chart.config.y_axis && typeof chart.config.y_axis !== 'string') return false;
+		if (chart.config.group_by && typeof chart.config.group_by !== 'string') return false;
+		if (chart.config.filters && typeof chart.config.filters !== 'object') return false;
 	}
-
-	if (!chart.user_id) {
-		throw new AppError("Chart type is required", "LOGIC");
-	}
-
-	if (!CHART_TYPES.includes(chart.type as ChartType)) {
-		throw new AppError(
-			`Invalid chart type. Must be one of: ${CHART_TYPES.join(", ")}`,
-			"LOGIC",
-		);
-	}
-
-	if (chart.data === undefined) {
-		throw new AppError("Chart data must be a object", "LOGIC");
-	}
-};
+	
+	return true;
+}

@@ -1,0 +1,57 @@
+{
+	"TABLE": "category",
+	"CREATE_TABLE": "CREATE TABLE category (id INTEGER PRIMARY KEY AUTOINCREMENT, user_id INTEGER, name TEXT NOT NULL, color TEXT NOT NULL, is_system BOOLEAN NOT NULL DEFAULT 0, created_at DATETIME, updated_at DATETIME, FOREIGN KEY (user_id) REFERENCES user(id))",
+	"SELECT_ALL": "SELECT * FROM category",
+	"SELECT_BY_ID": "SELECT * FROM category WHERE id = $id",
+	"SELECT_BY_USER_ID": "SELECT * FROM category WHERE user_id = $user_id OR is_system = 1",
+	"INSERT": "INSERT INTO category (user_id, name, color, is_system, created_at, updated_at) VALUES ($user_id, $name, $color, $is_system, $created_at, $updated_at)",
+	"UPDATE": "UPDATE category SET name = $name, color = $color, updated_at = $updated_at WHERE id = $id",
+	"DELETE": "DELETE FROM category WHERE id = $id AND is_system = 0",
+	"SEED": [
+		{
+			"id": 1,
+			"user_id": null,
+			"name": "Salary",
+			"color": "#4CAF50",
+			"is_system": true,
+			"created_at": "2023-01-01T00:00:00Z",
+			"updated_at": "2023-01-01T00:00:00Z"
+		},
+		{
+			"id": 2,
+			"user_id": null,
+			"name": "Freelance",
+			"color": "#8BC34A",
+			"is_system": true,
+			"created_at": "2023-01-01T00:00:00Z",
+			"updated_at": "2023-01-01T00:00:00Z"
+		},
+		{
+			"id": 3,
+			"user_id": null,
+			"name": "Groceries",
+			"color": "#F44336",
+			"is_system": true,
+			"created_at": "2023-01-01T00:00:00Z",
+			"updated_at": "2023-01-01T00:00:00Z"
+		},
+		{
+			"id": 4,
+			"user_id": null,
+			"name": "Entertainment",
+			"color": "#9C27B0",
+			"is_system": true,
+			"created_at": "2023-01-01T00:00:00Z",
+			"updated_at": "2023-01-01T00:00:00Z"
+		},
+		{
+			"id": 5,
+			"user_id": null,
+			"name": "Transportation",
+			"color": "#2196F3",
+			"is_system": true,
+			"created_at": "2023-01-01T00:00:00Z",
+			"updated_at": "2023-01-01T00:00:00Z"
+		}
+	]
+} 

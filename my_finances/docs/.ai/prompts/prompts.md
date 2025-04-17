@@ -152,6 +152,7 @@ I'll help you update the OVERVIEW.md document based on the prompt template and c
 
 Write the plan for the feature following the instructions
 
+Implement the plan
 
 ## Builder
 

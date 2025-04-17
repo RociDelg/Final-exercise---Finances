@@ -1,34 +1,46 @@
 {
 	"TABLE": "chart",
-	"CREATE_TABLE": "CREATE TABLE chart (id INTEGER PRIMARY KEY AUTOINCREMENT, user_id INTEGER NOT NULL, name TEXT NOT NULL, description TEXT, chart_type TEXT NOT NULL, data TEXT NOT NULL, created_at DATETIME, updated_at DATETIME, FOREIGN KEY (user_id) REFERENCES user(id))",
-	"SELECT_ALL": "SELECT * FROM chart",
-	"SELECT_BY_ID": "SELECT * FROM chart WHERE id = $id",
-	"SELECT_BY_USER_ID": "SELECT * FROM chart WHERE user_id = $user_id",
+	"CREATE_TABLE": "CREATE TABLE IF NOT EXISTS chart (id INTEGER PRIMARY KEY AUTOINCREMENT, user_id INTEGER NOT NULL, name VARCHAR(100) NOT NULL, description TEXT, chart_type VARCHAR(20) NOT NULL, data_source VARCHAR(50) NOT NULL, config JSON, created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, FOREIGN KEY (user_id) REFERENCES user(id), UNIQUE(user_id, name));",
+	"SELECT_ALL": "SELECT * FROM chart;",
+	"SELECT_BY_ID": "SELECT * FROM chart WHERE id = ?;",
+	"SELECT_BY_USER_ID": "SELECT * FROM chart WHERE user_id = ?;",
 	"SELECT_BY_CHART_TYPE": "SELECT * FROM chart WHERE user_id = $user_id AND chart_type = $chart_type",
-	"INSERT": "INSERT INTO chart (user_id, name, description, chart_type, data, created_at, updated_at) VALUES ($user_id, $name, $description, $chart_type, $data, $created_at, $updated_at)",
-	"UPDATE": "UPDATE chart SET name = $name, description = $description, chart_type = $chart_type, data = $data, updated_at = $updated_at WHERE id = $id",
-	"DELETE": "DELETE FROM chart WHERE id = $id",
+	"INSERT": "INSERT INTO chart (user_id, name, description, chart_type, data_source, config, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?);",
+	"UPDATE": "UPDATE chart SET name = ?, description = ?, chart_type = ?, data_source = ?, config = ?, updated_at = ? WHERE id = ? AND user_id = ?;",
+	"DELETE": "DELETE FROM chart WHERE id = ? AND user_id = ?;",
 	"SEED": [
 		{
+			"id": 1,
 			"user_id": 1,
 			"name": "Monthly Income vs Expenses",
-			"description": "Comparison of monthly income and expenses",
-			"chart_type": "bar",
-			"data": "{\"labels\":[\"Jan\",\"Feb\",\"Mar\",\"Apr\",\"May\",\"Jun\"],\"datasets\":[{\"label\":\"Income\",\"data\":[1200,1300,1250,1400,1350,1500],\"backgroundColor\":\"rgba(75, 192, 192, 0.2)\",\"borderColor\":\"rgba(75, 192, 192, 1)\",\"borderWidth\":1},{\"label\":\"Expenses\",\"data\":[950,1000,1050,980,1100,1020],\"backgroundColor\":\"rgba(255, 99, 132, 0.2)\",\"borderColor\":\"rgba(255, 99, 132, 1)\",\"borderWidth\":1}]}"
+			"description": "Line chart showing monthly income and expenses",
+			"chart_type": "line",
+			"data_source": "financial_summary",
+			"config": "{\"xAxis\":\"period_start\",\"yAxis\":[\"total_income\",\"total_expenses\"],\"colors\":[\"#4CAF50\",\"#F44336\"]}",
+			"created_at": "2023-01-01T00:00:00Z",
+			"updated_at": "2023-01-01T00:00:00Z"
 		},
 		{
+			"id": 2,
 			"user_id": 1,
-			"name": "Expense Categories",
-			"description": "Breakdown of expenses by category",
+			"name": "Expenses by Category",
+			"description": "Pie chart showing expenses by category",
 			"chart_type": "pie",
-			"data": "{\"labels\":[\"Housing\",\"Food\",\"Transportation\",\"Entertainment\",\"Utilities\",\"Other\"],\"datasets\":[{\"data\":[40,20,15,10,10,5],\"backgroundColor\":[\"rgba(255, 99, 132, 0.2)\",\"rgba(54, 162, 235, 0.2)\",\"rgba(255, 206, 86, 0.2)\",\"rgba(75, 192, 192, 0.2)\",\"rgba(153, 102, 255, 0.2)\",\"rgba(255, 159, 64, 0.2)\"],\"borderColor\":[\"rgba(255, 99, 132, 1)\",\"rgba(54, 162, 235, 1)\",\"rgba(255, 206, 86, 1)\",\"rgba(75, 192, 192, 1)\",\"rgba(153, 102, 255, 1)\",\"rgba(255, 159, 64, 1)\"],\"borderWidth\":1}]}"
+			"data_source": "category_summary",
+			"config": "{\"labelField\":\"category_id\",\"valueField\":\"amount\",\"colors\":[\"#2196F3\",\"#FFC107\",\"#9C27B0\",\"#FF5722\"]}",
+			"created_at": "2023-01-01T00:00:00Z",
+			"updated_at": "2023-01-01T00:00:00Z"
 		},
 		{
+			"id": 3,
 			"user_id": 2,
-			"name": "Income Sources",
-			"description": "Breakdown of income by source",
-			"chart_type": "doughnut",
-			"data": "{\"labels\":[\"Salary\",\"Freelance\",\"Investments\",\"Other\"],\"datasets\":[{\"data\":[60,25,10,5],\"backgroundColor\":[\"rgba(255, 99, 132, 0.2)\",\"rgba(54, 162, 235, 0.2)\",\"rgba(255, 206, 86, 0.2)\",\"rgba(75, 192, 192, 0.2)\"],\"borderColor\":[\"rgba(255, 99, 132, 1)\",\"rgba(54, 162, 235, 1)\",\"rgba(255, 206, 86, 1)\",\"rgba(75, 192, 192, 1)\"],\"borderWidth\":1}]}"
+			"name": "Monthly Balance",
+			"description": "Bar chart showing monthly balance",
+			"chart_type": "bar",
+			"data_source": "financial_summary",
+			"config": "{\"xAxis\":\"period_start\",\"yAxis\":\"balance\",\"colors\":[\"#4CAF50\"]}",
+			"created_at": "2023-01-01T00:00:00Z",
+			"updated_at": "2023-01-01T00:00:00Z"
 		}
 	]
 } 
