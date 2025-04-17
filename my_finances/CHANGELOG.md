@@ -1,6 +1,6 @@
 # Changelog
 
-## [Unreleased]
+## [0.1.0] - 2024-04-17
 
 ### Added
 - Data Export Feature
@@ -37,4 +37,6 @@
 
 ### Fixed
 - Improved error handling in entity validation
-- Fixed type definitions for chart and filter interfaces 
+- Fixed type definitions for chart and filter interfaces
+
+## [Unreleased] 

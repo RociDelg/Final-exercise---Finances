@@ -20,7 +20,26 @@ Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.
 
 ## Running end-to-end tests
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+We use [Playwright](https://playwright.dev/) for end-to-end testing. Here are the available commands:
+
+```bash
+# Run all e2e tests
+npm run test:e2e
+
+# Run e2e tests in headless mode
+npm run test:e2e:headless
+
+# Run e2e tests with UI
+npm run test:e2e:ui
+
+# Run e2e tests in debug mode
+npm run test:e2e:debug
+
+# View test report
+npm run test:e2e:report
+```
+
+For detailed information about e2e testing, please refer to [E2E Testing Guide](docs/E2E_TESTING.md).
 
 ## Further help
 

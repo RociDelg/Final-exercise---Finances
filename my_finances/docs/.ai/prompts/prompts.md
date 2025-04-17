@@ -154,6 +154,17 @@ Write the plan for the feature following the instructions
 
 Implement the plan
 
+Document the e2e installation and running process
+
+Add and e2e rule to the @rules  based on this example and the current rules
+
+Write e2e test for @01-user_registration.blueprint.md 
+Write e2e test for  @02-transaction_recording.blueprint.md (with every feature))
+
+Implement cache and unit test
+
+doc and release this project
+
 ## Builder
 
 - Follow the instructions in @builder.instructions.md to generate the construction blueprint following the @builder.template.md template and save it as builder.blueprint.md

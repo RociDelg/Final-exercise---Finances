@@ -1,0 +1,110 @@
+# E2E Test Rule
+
+## Purpose
+This rule defines the standards and patterns for writing end-to-end tests using Playwright in the MyFinances application.
+
+## Rule Definition
+E2E tests must follow these standards:
+
+1. **File Structure**
+   - Tests must be placed in the `tests/e2e` directory
+   - Test files must use the `.spec.ts` extension
+   - File names must match the feature being tested (e.g., `user-registration.spec.ts`)
+
+2. **Test Organization**
+   - Use `test.describe()` to group related tests
+   - Use `test.beforeEach()` for common setup
+   - Each test must have a clear, descriptive name
+   - Tests must be independent and isolated
+
+3. **Test Structure**
+   ```typescript
+   import { test, expect } from '@playwright/test';
+
+   test.describe('Feature Name', () => {
+     test.beforeEach(async ({ page }) => {
+       // Common setup
+     });
+
+     test('should do something specific', async ({ page }) => {
+       // Test implementation
+     });
+   });
+   ```
+
+4. **Assertions**
+   - Use `expect()` for assertions
+   - Include meaningful error messages
+   - Test both positive and negative scenarios
+   - Verify UI elements, navigation, and data
+
+5. **Best Practices**
+   - Use page objects for complex pages
+   - Implement proper waiting strategies
+   - Handle loading states
+   - Clean up test data after tests
+   - Use meaningful selectors (prefer data-testid)
+
+6. **Error Handling**
+   - Test error scenarios
+   - Verify error messages
+   - Check error states in UI
+   - Validate form validation
+
+7. **Performance**
+   - Keep tests focused and fast
+   - Avoid unnecessary waits
+   - Use appropriate timeouts
+   - Minimize test dependencies
+
+## Examples
+
+### Good Example
+```typescript
+test.describe('User Registration', () => {
+  test.beforeEach(async ({ page }) => {
+    await page.goto('/');
+  });
+
+  test('should display registration form', async ({ page }) => {
+    await page.click('text=Register');
+    await expect(page.locator('form')).toBeVisible();
+    await expect(page.locator('input[name="username"]')).toBeVisible();
+  });
+
+  test('should show validation errors', async ({ page }) => {
+    await page.click('text=Register');
+    await page.click('button[type="submit"]');
+    await expect(page.locator('.error-message')).toBeVisible();
+  });
+});
+```
+
+### Bad Example
+```typescript
+// ❌ No describe block
+test('test registration', async ({ page }) => {
+  // ❌ No setup
+  // ❌ Unclear test name
+  // ❌ No assertions
+});
+
+// ❌ Dependent tests
+test('step 1', async ({ page }) => {
+  // ...
+});
+test('step 2', async ({ page }) => {
+  // Depends on step 1
+});
+```
+
+## Validation
+- Tests must pass in all configured browsers
+- Tests must run in both UI and headless modes
+- Tests must complete within the configured timeout
+- Tests must not leave test data in the system
+
+## Related Rules
+- [Web Rule](web.mdc)
+- [Server Controller Rule](server-controller.mdc)
+- [Server Repository Rule](server-repository.mdc) 

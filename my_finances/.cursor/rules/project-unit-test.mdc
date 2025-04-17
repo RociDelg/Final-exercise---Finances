@@ -1,0 +1,27 @@
+---
+description: Rules for unit testing with Bun (Jest syntax)
+globs: /src/**/*.test.ts
+alwaysApply: false
+---
+
+# Unit Testing Rules
+
+Import Jasmine for testing.
+Write test in a file with the same name as the file to test, but with a `.test.ts` extension.
+Place the test file in the same directory as the file to test.
+
+## Test Structure
+
+- Use the `describe` function to group tests into logical suites
+- Use the `it` function to write individual tests
+- Use the `expect` function to make assertions
+- Use the `beforeEach` function to set up the test environment
+- Use the `afterEach` function to clean up the test environment
+
+## Test Organization
+
+- Name input variables with `input` prefix
+- Name output variables with `actual` prefix
+- Name expected variables with `expected` prefix
+- Follow the Arrange-Act-Assert (AAA) pattern
+- Add comments at the beginning of the test file with the structure of the tests
